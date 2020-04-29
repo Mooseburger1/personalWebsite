@@ -1,0 +1,49 @@
+body, html{
+    height: 100%;
+    background-color: black;
+    margin: 0;
+
+}
+
+.background-parallax {
+    min-height: 100vh;
+    background: transparent;
+
+}
+
+
+#main__container{
+    max-width: 100%;
+    margin: 0;
+    padding:0;
+    
+}
+
+
+.overlay{
+    height:100vh;
+    width:100%;
+    background-color: rgba(70, 70, 70, 0.4);
+    z-index: 2;
+    position: absolute;
+    top:0px;
+    left:0px;
+}
+
+.title{
+    z-index:3;
+    color:white;
+    position: absolute;
+    top:50%;
+    left:20%;
+}
+
+
+body {
+    font-family: 'Cardo', serif;
+   }
+   
+   h1, h2, h3, h4, h5, h6 {
+    font-family: 'Oswald', sans-serif;
+    text-transform: uppercase;
+   }
