@@ -41,9 +41,28 @@ body, html{
 
 body {
     font-family: 'Cardo', serif;
+    color:white;
    }
    
-   h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4, h5, h6 {
     font-family: 'Oswald', sans-serif;
     text-transform: uppercase;
    }
+
+#contact{
+    z-index: 3;
+    position:absolute;
+    top:1%;
+    right:1%;
+}
+
+
+.main_text{
+    padding-top: 120px;
+    padding-bottom: 120px;
+    margin-right: 220px;
+    margin-left: 220px;
+    font-size: 20px;
+    line-height: 40px;
+}
+
