@@ -1,0 +1,38 @@
+name,exp,rank,img,category
+Python,5,1,,language
+Pandas,5,1,,library
+Numpy,5,1,,library
+Jupyter,5,1,,tech
+Git,5,3,,tech
+Docker,2,3,,tech
+AWS EC2,2,2,,cloud
+AWS S3,2,2,,cloud
+SQL,5,2,,language
+Golang,1,4,,language
+R,2,5,,language
+HTML,5,1,,language
+CSS,5,3,,language
+Javascript,3,3,,language
+D3.js,1,4,,language
+Matplotlib,5,1,,library
+Spark,2,3,,tech
+Hadoop,1,5,,tech
+Tensorflow,3,2,,library
+Deep Learning,3,2,,skill
+AWS EMR,1,4,,tech
+Linux,4,1,,tech
+Regression,5,1,,skill
+Logistic Regression,5,1,,skill
+CNN,3,2,,skill
+ANN,5,1,,skill
+Random Forest,2,1,,skill
+Support Vector Machines,2,2,,skill
+Decision Trees,2,2,,skill
+K-Means,5,1,,skill
+KNN,5,1,,skill
+Reinforcement Learning,1,2,,skill
+3D Printing,1,4,,tech
+VS Code,2,1,,tech
+VS Studio,3,1,,tech
+Bash,5,2,,tech
+Powershell,2,2,,tech

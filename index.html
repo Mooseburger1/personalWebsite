@@ -9,27 +9,35 @@
         <meta http-equiv="content-type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <script src="https://d3js.org/d3.v4.min.js"></script>
         <script src="scripts/parallax.min.js"></script>
         <link href="https://fonts.googleapis.com/css?family=Cardo:400,700|Oswald" rel="stylesheet">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"></link>
         <link rel="stylesheet" href="styles/index.css"></link>
     </headers>
-    <body class="no-touch">
+    <body>
         
         <div id="main__container">
             <div id='background'>
                 <div class="background-parallax" data-parallax="scroll" data-z-index="1" data-image-src="static/main.jpg"></div>
                 <div class="overlay"></div>
                 <div class="title">
-                    <p><h1 style="font-size:100px;">Kelly "Scott" Sims</h1></p>
-                    <p><h3>The Moose <img src="static/moose.png" style='height:200px; width:200px'/></h3></p>
+                    <p><h1 style="font-size:6vw;">Kelly "Scott" Sims</h1></p>
+                    <p><h3 style="height:5vw">The Moose <img src="static/moose.png" style='height:5vw; width:5vw'/></h3></p>
                 </div>
                 <div id='contact'>
-                    <p><h3><a>Contact Me</a></h3></p>
+                    <a href="#open-modal"><h3 class='contact'>CONTACT ME</h3></a>
+                    <div id="open-modal" class="modal-window">
+                      <div>
+                        <a href="#modal-close" title="Close" class="modal-close">close &times;</a>
+                        <h1>CONTACT</h1>
+                        <div>EMAIL: Mooseburger1@msn.com </br> TEXT: Seven Five Seven - Six One Seven - Two Nine Seven Seven</div>
+                      </div>
+                    </div>
                 </div>
                 <div class="schools">
-                    <img class='um' src='static/olemiss.jpg' style='height:50px; width:50px; float:left'/>
-                    <img class='gt' src='static/gt.jpg' style='height:50px; width:50px; float:left'/>
+                    <img class='um' src='static/olemiss.png' style='height:8%; width:8%; float:right'/>
+                    <img class='gt' src='static/gt.png' style='height:10%; width:10%; float:right; padding-top:35px'/>
                 </div>
             </div>
         </div>
@@ -60,7 +68,7 @@
                   
               </div>
               <div class="col-lg-4">
-                  <a href='#'>
+                  <a href='https://moosescripts.s3-us-west-2.amazonaws.com/Resume.pdf'>
                       <div class='imgBox'>
                           <img class="d-block w-100 cloudinaryDynamicImage rounded" src="static/resume.png"  data-width="1600" data-height="900" data-html-width="100%" data-html-height="auto" data-crop="fill">
                           <div class="middle">
@@ -106,7 +114,7 @@
   
                 </div>
                 <div class="col-lg-4">
-                    <a href='#'>
+                    <a href='travel.html'>
                         <div class='imgBox'>
                              <img class="d-block w-100 cloudinaryDynamicImage rounded" src="static/globe.png"  data-width="1600" data-height="900" data-html-width="100%" data-html-height="auto" data-crop="fill">
                              <div class="middle">
@@ -119,7 +127,12 @@
               </div>
           </div>
         
+
+          <div id="vis" style='padding-top: 300px;'></div>
         
+
+
+          <script src='scripts/skills.js'></script>
     </body>
     
 </html>
