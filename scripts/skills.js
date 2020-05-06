@@ -103,14 +103,22 @@ function bubbleChart() {
           .data(nodes)
           .enter()
           .append('svg:pattern')
-          .attr('id', function(d){return d.img;})
-          .attr('height', '100%')
-          .attr('width', '100%')
-          .attr('viewBox', '0 0 200 200')
+          .attr('id', function(d){return d.name;})
+          // .attr('viewBox', '0 0 200 200')
+          .attr('height', 23)
+          .attr('width', 14)
+          .append('rect')
+          .attr('height', 23)
+          .attr('width', 14)
+          .attr('fill', 'white')
+
+
+      defs.selectAll('pattern')
+          .data(nodes)
           .append('svg:image')
           .attr('xlink:href', function(d){return d.img;})
-          .attr('height', 200)
-          .attr('width', 200)
+          .attr('height', 23)
+          .attr('width', 14)
           .attr('x', 0)
           .attr('y', 0)
     
@@ -121,20 +129,20 @@ function bubbleChart() {
 
     var bubblesE = bubbles.enter().append('circle')
       .classed('bubble', true)
-      .attr('r', 0)
+      .attr('r', 39)
       .attr('stroke', function (d) { return strokeColor(d.cat); })
       .attr('stroke-width', 2)
-      .attr('fill', 'white')
+      .attr('fill', function(d){return "url(#" + d.name + ")"; })
       .on('mouseover', showDetail)
       .on('mouseout', hideDetail);
 
 
     bubbles = bubbles.merge(bubblesE);
 
-    bubbles.transition()
-      .duration(2000)
-      .attr('r', 30)
-      .attr('fill', function(d){return "url(#" + d.img + ")"; });
+    // bubbles.transition()
+    //   .duration(2000)
+    //   .attr('r', 30)
+    //   .attr('fill', function(d){return "url(#" + d.name + ")"; });
 
 
 
