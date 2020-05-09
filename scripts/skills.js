@@ -11,88 +11,158 @@ var defs = svg.insert('svg:defs').data(['end']);
 
 var tooltip = floatingTooltip('Skills', 240);
 
+var catCenters = {
+    language: { x: width / 4, y: height / 2 },
+    library: { x: width / 3, y: height / 2 },
+    tech: { x: 2 * width / 4, y: height / 2 },
+    cloud: { x: 2 * width / 3, y: height / 2 },
+    skill: { x: 2 * width /2, y: height / 2 }
+  };
 
-d3.csv('data/skills.csv', function(d){
 
-    var data = processData(d);
+var Categories = {
+    language: 20,
+    library: 200,
+    tech:400,
+    cloud: 600,
+    skill: 800
+    
+  };
+
+/////////////////////////////////// ENTRY POINT /////////////////////////////////////////////
+
+var bubbleChart = main();
+
+function setupButtons() {
+    bubbleChart();
+    
+    d3.select('#toolbar')
+      .selectAll('.button')
+      .on('click', function () {
+
+        d3.selectAll('.button').classed('active', false);
+
+        var button = d3.select(this);
+
+        button.classed('active', true);
+  
+        var buttonId = button.attr('id');
+  
+        bubbleChart.toggle(buttonId);
+      });
+  }
+
+setupButtons();
+
+////////////////////////////////// MAIN FUNCTION ////////////////////////////////////////////
+function main(){
 
     //////////////// force graph intialization /////////////////
     var forceStrength = 0.1;
+    var simulation = d3.forceSimulation();
 
-    function charge(d){
-        return -Math.pow(60, 2.0) * forceStrength
-    }
+    //////////////// Closure Function //////////////////////////
+    function graph(){
+                d3.csv('data/skills.csv', function(d){
 
-    var simulation = d3.forceSimulation()
-                       .nodes(d3.values(data))
-                       .velocityDecay(0.2)
-                       .force('x', d3.forceX().strength(forceStrength).x(width / 2))
-                       .force('y', d3.forceY().strength(forceStrength).y(height / 2))
-                       .force('charge', d3.forceManyBody().strength(charge))
-                       .on('tick', ticked);
+                    var data = processData(d);
 
-    simulation.stop()
-    /////////////////////////////////////////////////////////////
+                    
 
-    ////////////// needed funcions //////////////////////////////
-    function group(){
-        simulation.force('x', d3.forceX().strength(forceStrength).x(width/2));
-        simulation.alpha(1).restart();
-    }
+                    function charge(d){
+                        return -Math.pow(60, 2.0) * forceStrength
+                    }
 
+                    
+                    simulation.nodes(d3.values(data))
+                              .velocityDecay(0.2)
+                              .force('x', d3.forceX().strength(forceStrength).x(width / 2))
+                              .force('y', d3.forceY().strength(forceStrength).y(height / 2))
+                              .force('charge', d3.forceManyBody().strength(charge))
+                              .on('tick', ticked);
 
-    function ticked(){
-        nodeEnter
-        .attr("transform", function(d) {
-        return "translate(" + d.x + "," + d.y + ")"; })
-    }
-    //////////////////////////////////////////////////////////////
+                    simulation.stop()
+                    /////////////////////////////////////////////////////////////
+                    function ticked(){
+                        nodeEnter
+                        .attr("transform", function(d) {
+                        return "translate(" + d.x + "," + d.y + ")"; })
+                    }
+                    
 
+                    
 
-    
+                    var node = svg.selectAll('g.node')
+                                .data(data, function(d){return d.name;});
 
-    var node = svg.selectAll('g.node')
-                  .data(data, function(d){return d.name;});
+                    var nodeEnter = node.enter()
+                                        .append('svg:g')
+                                        .attr('class', 'node')
+                                        .on('mouseover', showDetail)
+                                        .on('mouseout', hideDetail)
 
-    var nodeEnter = node.enter()
-                        .append('svg:g')
-                        .attr('class', 'node')
-                        .on('mouseover', showDetail)
-                        .on('mouseout', hideDetail)
+                        nodeEnter.append('svg:circle')
+                                .attr('r', 0)
+                                .style('fill', 'white')
+                                .style('stroke', 'steelblue')
+                                .style('stroke-width', 4)
+                                
 
-        nodeEnter.append('svg:circle')
-                 .attr('r', 0)
-                 .style('fill', 'white')
-                 .style('stroke', 'steelblue')
-                 .style('stroke-width', 4)
-                 
-
-    var images = nodeEnter.append('svg:image')
-                          .attr('xlink:href', function(d){return d.img;})
-                          .attr('x', function(d){return -25})
-                          .attr('y', function(d){return -25})
-                          .attr('height', 50)
-                          .attr('width', 50)
-                          .style('opacity', 0);
-
-
-        nodeEnter.selectAll('circle')
-                 .transition()
-                 .duration(2000)
-                 .attr('r', 50)
-
-        nodeEnter.selectAll('image')
-              .transition()
-              .duration(2000)
-              .style('opacity', 1)
-
-    group();
+                    var images = nodeEnter.append('svg:image')
+                                        .attr('xlink:href', function(d){return d.img;})
+                                        .attr('x', function(d){return -25})
+                                        .attr('y', function(d){return -25})
+                                        .attr('height', 50)
+                                        .attr('width', 50)
+                                        .style('opacity', 0);
 
 
-})
+                        nodeEnter.selectAll('circle')
+                                .transition()
+                                .duration(2000)
+                                .attr('r', 50)
+
+                        nodeEnter.selectAll('image')
+                            .transition()
+                            .duration(2000)
+                            .style('opacity', 1)
+
+                    group();
 
 
+                });
 
+                ////////////// needed funcions //////////////////////////////
+                function group(){
+                    simulation.force('x', d3.forceX().strength(forceStrength).x(width/2));
+                    simulation.alpha(1).restart();
+                }
+
+                function split(){
+                    showTitles();
+
+                    simulation.force('x', d3.forceX().strength(forceStrength).x(sidePos));
+
+                    simulation.alpha(1).restart();
+                }
+                //////////////////////////////////////////////////////////////
+
+
+                    graph.toggle = function(selector){
+                        if (selector == 'sort'){
+                            split();
+                        }else if (selector == 'all'){
+                            group();
+                        }
+                    }
+    };
+    return graph;
+};
+
+
+function sidePos(d) {
+    return catCenters[d.cat].x;
+  }
 
 
 function processData(rawData){
@@ -206,5 +276,24 @@ function hideDetail(d) {
       hideTooltip: hideTooltip,
       updatePosition: updatePosition
     };
+  }
+
+
+  function showTitles() {
+
+    var cats = d3.keys(Categories);
+    var headers = svg.selectAll('.sides')
+      .data(cats);
+
+    headers.enter().append('text')
+      .attr('class', 'sides')
+      .attr("z-index", "999")
+      .attr("fill", "gray")
+      .attr("font-weight", "bolder")
+      .attr("font-size", "30")
+      .attr('x', function (d) { return Categories[d]; })
+      .attr('y', 40)
+      .attr('text-anchor', 'middle')
+      .text(function (d) { return d; });
   }
   
