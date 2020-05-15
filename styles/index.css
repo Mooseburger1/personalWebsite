@@ -87,6 +87,7 @@ h1, h2, h3, h4, h5, h6 {
     backface-visibility: hidden;
     border:solid gray 0.2rem;
     border-radius: 7px;
+    cursor: pointer;
 }
 
 .imgBox:hover
@@ -247,4 +248,31 @@ h1, h2, h3, h4, h5, h6 {
 
 .rtb-col.h2{
   text-decoration: none;
+}
+
+/* #Slider {
+            
+} */
+#Actual {
+    color: White;
+    padding: 20px;
+}
+.slideup, .slidedown {
+    max-height: 0;            
+    overflow-y: hidden;
+    -webkit-transition: max-height 0.8s ease-in-out;
+    -moz-transition: max-height 0.8s ease-in-out;
+    -o-transition: max-height 0.8s ease-in-out;
+    transition: max-height 0.8s ease-in-out;
+}
+.slidedown {            
+    max-height: 5000000px ;                    
+}
+
+#x{
+  font-size:50px;
+  color:white;
+  position: relative;
+  right:10px;
+  top:10px;
 }

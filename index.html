@@ -105,25 +105,21 @@
             </div>
             <div class="row" style='padding-top:50px;'>
                 <div class="col-lg-4">
-                    <a href='#'>
-                        <div class='imgBox'>
+                        <div class='imgBox' onclick=skills()>
                             <img class="d-block w-100 cloudinaryDynamicImage rounded" src="static/skills.png"  data-width="1600" data-height="900" data-html-width="100%" data-html-height="auto" data-crop="fill">
                             <div class="middle">
                                 <p class="text-center hoverText">My Skills</p>
                             </div>
                         </div>
-                </a>  
-  
                 </div>
                 <div class="col-lg-4">
-                    <a href='#'>
-                        <div class='imgBox'>
+                        <div class='imgBox' onclick=posts()>
                             <img class="d-block w-100 cloudinaryDynamicImage rounded" src="static/projects.png"  data-width="1600" data-height="900" data-html-width="100%" data-html-height="auto" data-crop="fill">
                             <div class="middle">
                                 <p class="text-center hoverText">My Projects & Posts</p>
                             </div>
                         </div>
-                </a>
+
   
                 </div>
                 <div class="col-lg-4">
@@ -141,37 +137,85 @@
           </div>
         
 
-        
-        <div class="container-fluid" class='no_underline' style="display:none">
-            <div class='main_text' style="vertical-align: center">
-                <div id="retainable-rss-embed" 
-                    data-rss="https://medium.com/feed/@moosesims"
-                    data-maxcols="3" 
-                    data-layout="grid" 
-                    data-poststyle="inline" 
-                    data-readmore="Read the rest" 
-                    data-buttonclass="btn btn-primary" 
-                    data-offset="-100">
+
+          <div class="container" style="padding: 40px">
+            <div id="SliderPosts" class="slideup">
+              <!-- content has to be wrapped so that the padding and
+                      margins don't effect the transition's height -->
+                <div id="Actual">
+                        <div id='x' onclick=posts()>X</div>
+
+                        
+                            <div id="retainable-rss-embed" 
+                                data-rss="https://medium.com/feed/@moosesims"
+                                data-maxcols="3" 
+                                data-layout="grid" 
+                                data-poststyle="inline" 
+                                data-readmore="Read the rest" 
+                                data-buttonclass="btn btn-primary" 
+                                data-offset="-100">
+                            </div>
+                       
+                   
                 </div>
             </div>
         </div>
 
+        
+        
+
           
-        <div id='here' class="container" style="vertical-align:center">
-            <h1 style="position:relative; left:100; color:white">SKILLS</h1>
-            <div id="toolbar" style="position:relative;left:100">
-                <a href="#here" id="all" class="button active">All Skills</a>
-                <a href="#here" id="sort" class="button">Sort</a>
-                <a href="#here" id="breakdown" class="button">Breakdown</a>
-            </div>
-            <div style=" height:100%">
-                
-                <div id="skills" style='position:relative; top:30;right:100; width: 100%'></div>
-                <div id="forceText" style='height:20%;vertical-align:center;color:white;position:relative; top:-80; width:100%; font-size:20'><p class='introduction'>World War II Involved 30+ "actively" involved countries, 3 continents and is the most destructive war in history. It redrew country lines, created new ones, abolished empires and ushered in a new era of warfare.</p></div>
+        <div class="container" style="padding: 40px">
+            <div id="SliderSkills" class="slideup">
+              <!-- content has to be wrapped so that the padding and
+                      margins don't effect the transition's height -->
+                <div id="Actual">
+                    <div id='here' class="container" style="vertical-align:center">
+                        <h1 style="position:relative; left:100; color:white">SKILLS</h1>
+                        <div id="toolbar" style="position:relative;left:100">
+                            <a href="#here" id="all" class="button active">All Skills</a>
+                            <a href="#here" id="sort" class="button">Sort</a>
+                            <a href="#here" id="breakdown" class="button">Breakdown</a>
+                        </div>
+                        <div style=" height:100%">
+                            <div id="skills" style='position:relative; top:30;right:100; width: 100%'></div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
-    </div>
+      
+      
+        <script data-require="jquery@2.0.3" data-semver="2.0.3" src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+        <script>
+            function sleep(milliseconds) { 
+                let timeStart = new Date().getTime(); 
+                while (true) { 
+                let elapsedTime = new Date().getTime() - timeStart; 
+                if (elapsedTime > milliseconds) { 
+                    break; 
+                } 
+                } 
+            };
+
+            function skills(){
+                $("#SliderSkills").toggleClass("slidedown slideup");
+                $('html,body').animate({scrollTop: document.body.scrollHeight},1000);
+            };
+
+            function posts(){
+                $("#SliderPosts").toggleClass("slidedown slideup");
+                if ( $("#SliderPosts").is( ".slidedown" ) ) {
+                    console.log("true")
+                    $('html,body').animate({scrollTop: document.body.scrollHeight},1000);
+
+                }
+                
+            };
+
+          </script>
+          
 
 
           <script src='scripts/skills.js'></script>
@@ -200,24 +244,3 @@
 
 
 
-<!-- <div id='here' class="container" style="vertical-align:center">
-    <h1 style="position:relative; left:100; color:white">WWII - GLOBAL DEVASTATION</h1>
-    <div id="toolbar" style="position:relative;left:100">
-        <a href="#here" id="all" class="button active">All Combatants</a>
-        <a href="#here" id="side" class="button">Combatants</a>
-        <a href="#here" id="deaths" class="button">Deaths</a>
-        <a href="#here" id="milDeaths" class="button">Military Deaths</a>
-        <a href="#here" id="civDeaths" class="button">Civilian Deaths</a>
-        <a href="#here" id="percentage" class="button">Percentage</a>
-    </div>
-    <div style=" height:100%">
-        
-        <div id="vis" style='position:relative; top:30;right:100; width: 100%'></div>
-        <div id="forceText" style='height:20%;vertical-align:center;color:white;position:relative; top:-80; width:100%; font-size:20'><p class='introduction'>World War II Involved 30+ "actively" involved countries, 3 continents and is the most destructive war in history. It redrew country lines, created new ones, abolished empires and ushered in a new era of warfare.</p></div>
-    </div>
-    <div class="intro_text" style="vertical-align: center">
-        <p class="introduction">There's a lot to cover in a war that lasted approximately 6 years. But before we continue down the WW2 trail, let's take a brief look at all the events that led up to WWII.</p>
-    </div>
-</div>
-
-</div> -->

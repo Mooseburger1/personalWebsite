@@ -70,7 +70,7 @@ function main(){
                     
 
                     function charge(d){
-                        return -Math.pow(60, 2.0) * forceStrength
+                        return -Math.pow(30, 2.0) * forceStrength
                     }
 
                     
@@ -112,15 +112,15 @@ function main(){
                                         .attr('xlink:href', function(d){return d.img;})
                                         .attr('x', function(d){return -25})
                                         .attr('y', function(d){return -25})
-                                        .attr('height', 50)
-                                        .attr('width', 50)
+                                        .attr('height', 30)
+                                        .attr('width', 30)
                                         .style('opacity', 0);
 
 
                         nodeEnter.selectAll('circle')
                                 .transition()
                                 .duration(2000)
-                                .attr('r', 50)
+                                .attr('r', 30)
 
                         nodeEnter.selectAll('image')
                             .transition()

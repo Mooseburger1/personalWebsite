@@ -43,7 +43,7 @@ function bubbleChart() {
   var nodes = [];
 
   function charge(d) {
-    return -Math.pow(30, 2.0) * forceStrength;
+    return -Math.pow(25, 2.0) * forceStrength;
   }
 
   var simulation = d3.forceSimulation()
